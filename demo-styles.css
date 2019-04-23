@@ -1,0 +1,38 @@
+:root {
+  --blue-accent: #0076f6;
+  --green-accent: #20ca72;
+  --red-accent: #f64040;
+  --light-grey-accent: #d6d6d6;
+
+  --grey-color: #565656;
+}
+
+input {
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: solid 1px var(--light-grey-accent);
+  margin: 5px 0;
+  font-size: 1em;
+  color: var(--grey-color);
+}
+
+input:focus {
+  border-color: var(--blue-accent);
+}
+
+label {
+  text-transform: uppercase;
+  margin-top: 15px;
+  font-size: 1em;
+  color: var(--grey-color);
+}
+
+button {
+  background-color: var(--blue-accent);
+  border-radius: 4px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  color: white;
+  border: none;
+}
