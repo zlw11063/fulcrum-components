@@ -4,11 +4,14 @@ const fs = require('fs')
 
 module.exports = {
   components: 'packages/**/src/**/*.js',
-  ignore: ['packages/**/src/lib/**'],
+  ignore: ['packages/**/src/lib/**', 'packages/**/src/index.js', 'packages/*/node_modules/**'],
   webpackConfig: require('./webpack.config.js'),
   pagePerSection: true,
   usageMode: 'expand',
   exampleMode: 'expand',
+  context: {
+    css: path.resolve(__dirname, 'setup-scripts/emotion-fixture.js'),
+  },
   require: [
     path.resolve(__dirname, 'setup-scripts/styleguide.setup.js')
   ],

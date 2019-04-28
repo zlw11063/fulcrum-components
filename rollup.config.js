@@ -1,38 +1,14 @@
 // Rollup plugins
 import babel from 'rollup-plugin-babel'
 import resolve from 'rollup-plugin-node-resolve'
-import uglify from 'rollup-plugin-uglify'
-
-// Lerna utilities
-import PackageUtilities from 'lerna/lib/PackageUtilities'
-import Repository from 'lerna/lib/Repository'
-
-const packageList = PackageUtilities.getPackages(new Repository(process.cwd()))
-
-// packageList.map(package => ({
-//   location: package._location,
-//   package: package._package
-// }))
+import commonjs from 'rollup-plugin-commonjs'
+import css from 'rollup-plugin-css-only'
 
 const config = {
   input: 'src/index.js',
   output: [
     {
-      file: 'dist/bundle.cjs.js',
-      format: 'cjs',
-      globals: {
-        react: 'React'
-      }
-    },
-    {
-      file: 'dist/bundle.es.js',
-      format: 'es',
-      globals: {
-        react: 'React'
-      }
-    },
-    {
-      file: 'dist/bundle.umd.js',
+      file: 'dist/index.js',
       format: 'umd',
       name: 'bundle',
       globals: {
@@ -42,10 +18,16 @@ const config = {
   ],
   plugins: [
     resolve(),
-    babel({
-      exclude: 'node_modules/**'
+    babel(require('./babel.config.js')),
+    commonjs({
+      namedExports: {
+        'react': [ 'react' ],
+        'react-dom': [ 'react' ]
+      }
     }),
-    process.env.NODE_ENV === 'production' && uglify()
+    css({
+      output: 'bundle.css'
+    })
   ],
   external: ['react']
 }

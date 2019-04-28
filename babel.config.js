@@ -8,7 +8,8 @@ module.exports = {
         useBuiltIns: 'usage'
       }
     ],
-    '@babel/react'
+    '@babel/react',
+    // This is needed so { css } from emotion can work
+    '@emotion/babel-preset-css-prop'
   ],
-  plugins: ["@babel/plugin-syntax-dynamic-import"]
 }
